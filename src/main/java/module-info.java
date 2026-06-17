@@ -1,8 +1,12 @@
-module com.example.pucaronasjavafx {
+module com.example.caronas {
     requires javafx.controls;
-    requires javafx.fxml;
+    requires java.base;
 
-
-    opens com.example.pucaronasjavafx to javafx.fxml;
-    exports com.example.pucaronasjavafx;
+    exports com.example.caronas;
+    exports com.example.caronas.model;
+    exports com.example.caronas.view;
+    exports com.example.caronas.controller;
+    exports com.example.caronas.service;
+    exports com.example.caronas.repository;
+    exports com.example.caronas.util;
 }

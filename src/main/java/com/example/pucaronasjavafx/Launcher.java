@@ -1,9 +1,9 @@
 package com.example.pucaronasjavafx;
+import com.example.caronas.Main;
 
-import javafx.application.Application;
 
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(HelloApplication.class, args);
+        javafx.application.Application.launch(Main.class, args);
     }
 }

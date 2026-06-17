@@ -78,10 +78,10 @@ public class SolicitacaoCaronaCrudView extends BaseCrudView {
         HBox hboxBotoes = new HBox(10);
         hboxBotoes.setPadding(new Insets(10));
 
-        Button btnAceitar = new Button("✓ Aceitar");
-        Button btnRecusar = new Button("✘ Recusar");
-        Button btnExcluir = new Button("🗑 Excluir");
-        Button btnLimpar = new Button("C Limpar");
+        Button btnAceitar = new Button(" Aceitar");
+        Button btnRecusar = new Button(" Recusar");
+        Button btnExcluir = new Button(" Excluir");
+        Button btnLimpar = new Button(" Limpar");
 
         btnAceitar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnRecusar.setStyle("-fx-padding: 8; -fx-font-size: 12;");

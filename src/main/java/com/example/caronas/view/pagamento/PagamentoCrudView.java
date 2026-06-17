@@ -82,11 +82,11 @@ public class PagamentoCrudView extends BaseCrudView {
         HBox hboxBotoes = new HBox(10);
         hboxBotoes.setPadding(new Insets(10));
 
-        Button btnSalvar = new Button("✓ Salvar");
-        Button btnPagar = new Button("💳 Pagar");
-        Button btnCancelar = new Button("✘ Cancelar");
-        Button btnExcluir = new Button("🗑 Excluir");
-        Button btnLimpar = new Button("C Limpar");
+        Button btnSalvar = new Button(" Salvar");
+        Button btnPagar = new Button(" Pagar");
+        Button btnCancelar = new Button(" Cancelar");
+        Button btnExcluir = new Button(" Excluir");
+        Button btnLimpar = new Button(" Limpar");
 
         btnSalvar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnPagar.setStyle("-fx-padding: 8; -fx-font-size: 12;");

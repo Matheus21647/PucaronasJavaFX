@@ -74,10 +74,10 @@ public class NotificacaoCrudView extends BaseCrudView {
         HBox hboxBotoes = new HBox(10);
         hboxBotoes.setPadding(new Insets(10));
 
-        Button btnSalvar = new Button("✓ Salvar");
-        Button btnMarcarLida = new Button("✓ Marcar como Lida");
-        Button btnExcluir = new Button("🗑 Excluir");
-        Button btnLimpar = new Button("C Limpar");
+        Button btnSalvar = new Button(" Salvar");
+        Button btnMarcarLida = new Button(" Marcar como Lida");
+        Button btnExcluir = new Button(" Excluir");
+        Button btnLimpar = new Button(" Limpar");
 
         btnSalvar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnMarcarLida.setStyle("-fx-padding: 8; -fx-font-size: 12;");

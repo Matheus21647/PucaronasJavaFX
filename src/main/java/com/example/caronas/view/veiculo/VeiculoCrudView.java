@@ -80,10 +80,10 @@ public class VeiculoCrudView extends BaseCrudView {
         HBox hboxBotoes = new HBox(10);
         hboxBotoes.setPadding(new Insets(10));
 
-        Button btnSalvar = new Button("✓ Salvar");
-        Button btnLimpar = new Button("🗑 Limpar");
-        Button btnAtualizar = new Button("✎ Atualizar");
-        Button btnExcluir = new Button("✘ Excluir");
+        Button btnSalvar = new Button(" Salvar");
+        Button btnLimpar = new Button(" Limpar");
+        Button btnAtualizar = new Button(" Atualizar");
+        Button btnExcluir = new Button(" Excluir");
 
         btnSalvar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnLimpar.setStyle("-fx-padding: 8; -fx-font-size: 12;");

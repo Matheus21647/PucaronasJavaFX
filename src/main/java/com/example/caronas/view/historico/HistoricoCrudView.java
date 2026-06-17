@@ -83,10 +83,10 @@ public class HistoricoCrudView extends BaseCrudView {
         HBox hboxBotoes = new HBox(10);
         hboxBotoes.setPadding(new Insets(10));
 
-        Button btnSalvar = new Button("✓ Salvar");
-        Button btnAtualizar = new Button("✎ Atualizar");
-        Button btnExcluir = new Button("🗑 Excluir");
-        Button btnLimpar = new Button("C Limpar");
+        Button btnSalvar = new Button(" Salvar");
+        Button btnAtualizar = new Button(" Atualizar");
+        Button btnExcluir = new Button(" Excluir");
+        Button btnLimpar = new Button(" Limpar");
 
         btnSalvar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnAtualizar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
