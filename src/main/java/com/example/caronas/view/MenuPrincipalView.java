@@ -1,8 +1,10 @@
 package com.example.caronas.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,6 +32,12 @@ public class MenuPrincipalView {
     private void criarTela() {
         root = new BorderPane();
         root.setPadding(new Insets(15));
+
+        Label titulo = new Label("Menu Principal  Sistema de Caronas Universitárias");
+        titulo.setStyle("-fx-font-size: 22; -fx-font-weight: bold; -fx-padding: 10;");
+        BorderPane.setAlignment(titulo, Pos.CENTER);
+        root.setTop(titulo);
+
 
         VBox menuBox = criarMenu();
         root.setCenter(menuBox);

@@ -78,7 +78,7 @@ public class SolicitacaoCaronaCrudView extends BaseCrudView {
         HBox hboxBotoes = new HBox(10);
         hboxBotoes.setPadding(new Insets(10));
 
-        Button btnAceitar = new Button(" Aceitar");
+        Button btnAceitar = new Button(" Salvar");
         Button btnRecusar = new Button(" Recusar");
         Button btnExcluir = new Button(" Excluir");
         Button btnLimpar = new Button(" Limpar");
@@ -88,7 +88,7 @@ public class SolicitacaoCaronaCrudView extends BaseCrudView {
         btnExcluir.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnLimpar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
 
-        btnAceitar.setOnAction(e -> aceitar());
+        btnAceitar.setOnAction(e -> salvar());
         btnRecusar.setOnAction(e -> recusar());
         btnExcluir.setOnAction(e -> excluir());
         btnLimpar.setOnAction(e -> limpar());
@@ -139,15 +139,18 @@ public class SolicitacaoCaronaCrudView extends BaseCrudView {
         return tabela;
     }
 
-    private void aceitar() {
+    private void salvar() {
         try {
-            if (solicitacaoSelecionada == null) {
-                DialogUtil.mostrarErro("Validação", "Selecione uma solicitação para aceitar!");
+            String passageiroId = txtPassageiroId.getText();
+            String caronaId = txtCaronaId.getText();
+
+            if (passageiroId.isEmpty() || caronaId.isEmpty()) {
+                DialogUtil.mostrarErro("Validação", "Preencha todos os campos!");
                 return;
             }
 
-            controller.aceitar(solicitacaoSelecionada.getId());
-            DialogUtil.mostrarInfo("Sucesso", "Solicitação aceita!");
+            controller.criar(passageiroId, caronaId);
+            DialogUtil.mostrarInfo("Sucesso", "Solicitação salva!");
             limpar();
             atualizarTabela();
         } catch (Exception e) {
