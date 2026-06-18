@@ -41,6 +41,10 @@ public class PagamentoController {
         return service.realizarPagamento(id);
     }
 
+    public Pagamento atualizar(String id, String solicitacaoCaronaId, double valor, String metodo, String status) throws IOException {
+        return service.atualizar(id, solicitacaoCaronaId, valor, metodo, status);
+    }
+
     public Pagamento cancelarPagamento(String id) throws IOException {
         return service.cancelarPagamento(id);
     }

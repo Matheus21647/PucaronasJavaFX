@@ -41,6 +41,10 @@ public class NotificacaoController {
         return service.marcarComoLida(id);
     }
 
+    public Notificacao atualizar(String id, String usuarioId, String mensagem, boolean lida) throws IOException {
+        return service.atualizar(id, usuarioId, mensagem, lida);
+    }
+
     public void excluir(String id) throws IOException {
         service.excluir(id);
     }

@@ -41,6 +41,10 @@ public class SolicitacaoCaronaController {
         return service.aceitar(id);
     }
 
+    public SolicitacaoCarona atualizar(String id, String passageiroId, String caronaId, String status) throws IOException {
+        return service.atualizar(id, passageiroId, caronaId, status);
+    }
+
     public SolicitacaoCarona recusar(String id) throws IOException {
         return service.recusar(id);
     }

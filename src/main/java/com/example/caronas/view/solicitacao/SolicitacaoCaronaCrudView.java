@@ -79,21 +79,24 @@ public class SolicitacaoCaronaCrudView extends BaseCrudView {
         hboxBotoes.setPadding(new Insets(10));
 
         Button btnAceitar = new Button(" Salvar");
+        Button btnAtualizar = new Button(" Atualizar");
         Button btnRecusar = new Button(" Recusar");
         Button btnExcluir = new Button(" Excluir");
         Button btnLimpar = new Button(" Limpar");
 
         btnAceitar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
+        btnAtualizar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnRecusar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnExcluir.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnLimpar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
 
         btnAceitar.setOnAction(e -> salvar());
+        btnAtualizar.setOnAction(e -> atualizar());
         btnRecusar.setOnAction(e -> recusar());
         btnExcluir.setOnAction(e -> excluir());
         btnLimpar.setOnAction(e -> limpar());
 
-        hboxBotoes.getChildren().addAll(btnAceitar, btnRecusar, btnExcluir, btnLimpar);
+        hboxBotoes.getChildren().addAll(btnAceitar, btnAtualizar, btnRecusar, btnExcluir, btnLimpar);
 
         vbox.getChildren().addAll(
                 lblTitulo,
@@ -151,6 +154,37 @@ public class SolicitacaoCaronaCrudView extends BaseCrudView {
 
             controller.criar(passageiroId, caronaId);
             DialogUtil.mostrarInfo("Sucesso", "Solicitação salva!");
+            limpar();
+            atualizarTabela();
+        } catch (Exception e) {
+            DialogUtil.mostrarErro("Erro", e.getMessage());
+        }
+    }
+
+    private void atualizar() {
+        try {
+            if (solicitacaoSelecionada == null) {
+                DialogUtil.mostrarErro("Validação", "Selecione uma solicitação para atualizar!");
+                return;
+            }
+
+            String passageiroId = txtPassageiroId.getText();
+            String caronaId = txtCaronaId.getText();
+            String status = cbStatus.getValue();
+
+            if (passageiroId.isEmpty() || caronaId.isEmpty() || status == null) {
+                DialogUtil.mostrarErro("Validação", "Preencha todos os campos!");
+                return;
+            }
+
+            controller.atualizar(
+                    solicitacaoSelecionada.getId(),
+                    passageiroId,
+                    caronaId,
+                    status
+            );
+
+            DialogUtil.mostrarInfo("Sucesso", "Solicitação atualizada com sucesso!");
             limpar();
             atualizarTabela();
         } catch (Exception e) {

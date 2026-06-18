@@ -83,24 +83,27 @@ public class PagamentoCrudView extends BaseCrudView {
         hboxBotoes.setPadding(new Insets(10));
 
         Button btnSalvar = new Button(" Salvar");
+        Button btnAtualizar = new Button(" Atualizar");
         Button btnPagar = new Button(" Pagar");
         Button btnCancelar = new Button(" Cancelar");
         Button btnExcluir = new Button(" Excluir");
         Button btnLimpar = new Button(" Limpar");
 
         btnSalvar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
+        btnAtualizar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnPagar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnCancelar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnExcluir.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnLimpar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
 
         btnSalvar.setOnAction(e -> salvar());
+        btnAtualizar.setOnAction(e -> atualizar());
         btnPagar.setOnAction(e -> pagar());
         btnCancelar.setOnAction(e -> cancelar());
         btnExcluir.setOnAction(e -> excluir());
         btnLimpar.setOnAction(e -> limpar());
 
-        hboxBotoes.getChildren().addAll(btnSalvar, btnPagar, btnCancelar, btnExcluir, btnLimpar);
+        hboxBotoes.getChildren().addAll(btnSalvar, btnAtualizar, btnPagar, btnCancelar, btnExcluir, btnLimpar);
 
         vbox.getChildren().addAll(
                 lblTitulo,
@@ -163,6 +166,37 @@ public class PagamentoCrudView extends BaseCrudView {
             );
 
             DialogUtil.mostrarInfo("Sucesso", "Pagamento salvo com sucesso!");
+            limpar();
+            atualizarTabela();
+        } catch (NumberFormatException e) {
+            DialogUtil.mostrarErro("Erro", "Valor deve ser um número decimal!");
+        } catch (Exception e) {
+            DialogUtil.mostrarErro("Erro", e.getMessage());
+        }
+    }
+
+    private void atualizar() {
+        try {
+            if (pagamentoSelecionado == null) {
+                DialogUtil.mostrarErro("Validação", "Selecione um pagamento para atualizar!");
+                return;
+            }
+
+            if (txtSolicitacaoId.getText().isEmpty() || txtValor.getText().isEmpty() || cbMetodo.getValue() == null) {
+                DialogUtil.mostrarErro("Validação", "Preencha todos os campos obrigatórios!");
+                return;
+            }
+
+            double valor = Double.parseDouble(txtValor.getText());
+            controller.atualizar(
+                    pagamentoSelecionado.getId(),
+                    txtSolicitacaoId.getText(),
+                    valor,
+                    cbMetodo.getValue(),
+                    cbStatus.getValue() != null ? cbStatus.getValue() : "pendente"
+            );
+
+            DialogUtil.mostrarInfo("Sucesso", "Pagamento atualizado com sucesso!");
             limpar();
             atualizarTabela();
         } catch (NumberFormatException e) {

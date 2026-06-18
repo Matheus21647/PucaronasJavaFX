@@ -71,6 +71,25 @@ public class PagamentoService {
         return pagamento.get();
     }
 
+    public Pagamento atualizar(String id, String solicitacaoCaronaId, double valor, String metodo, String status) throws IOException {
+        Optional<Pagamento> pagamento = repository.buscarPorId(id);
+        if (pagamento.isEmpty()) {
+            throw new IllegalArgumentException("Pagamento não encontrado");
+        }
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Valor deve ser maior que zero");
+        }
+        if (!metodo.equals("pix") && !metodo.equals("dinheiro")) {
+            throw new IllegalArgumentException("Método deve ser 'pix' ou 'dinheiro'");
+        }
+        pagamento.get().setSolicitacaoCaronaId(solicitacaoCaronaId);
+        pagamento.get().setValor(valor);
+        pagamento.get().setMetodo(metodo);
+        pagamento.get().setStatus(status);
+        repository.atualizar(pagamento.get());
+        return pagamento.get();
+    }
+
     public Pagamento cancelarPagamento(String id) throws IOException {
         Optional<Pagamento> pagamento = repository.buscarPorId(id);
         if (pagamento.isEmpty()) {

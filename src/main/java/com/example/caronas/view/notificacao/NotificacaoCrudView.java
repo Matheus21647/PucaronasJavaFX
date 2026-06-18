@@ -75,21 +75,24 @@ public class NotificacaoCrudView extends BaseCrudView {
         hboxBotoes.setPadding(new Insets(10));
 
         Button btnSalvar = new Button(" Salvar");
+        Button btnAtualizar = new Button(" Atualizar");
         Button btnMarcarLida = new Button(" Marcar como Lida");
         Button btnExcluir = new Button(" Excluir");
         Button btnLimpar = new Button(" Limpar");
 
         btnSalvar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
+        btnAtualizar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnMarcarLida.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnExcluir.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         btnLimpar.setStyle("-fx-padding: 8; -fx-font-size: 12;");
 
         btnSalvar.setOnAction(e -> salvar());
+        btnAtualizar.setOnAction(e -> atualizar());
         btnMarcarLida.setOnAction(e -> marcarLida());
         btnExcluir.setOnAction(e -> excluir());
         btnLimpar.setOnAction(e -> limpar());
 
-        hboxBotoes.getChildren().addAll(btnSalvar, btnMarcarLida, btnExcluir, btnLimpar);
+        hboxBotoes.getChildren().addAll(btnSalvar, btnAtualizar, btnMarcarLida, btnExcluir, btnLimpar);
 
         vbox.getChildren().addAll(
                 lblTitulo,
@@ -148,6 +151,33 @@ public class NotificacaoCrudView extends BaseCrudView {
             );
 
             DialogUtil.mostrarInfo("Sucesso", "Notificação salva com sucesso!");
+            limpar();
+            atualizarTabela();
+        } catch (Exception e) {
+            DialogUtil.mostrarErro("Erro", e.getMessage());
+        }
+    }
+
+    private void atualizar() {
+        try {
+            if (notificacaoSelecionada == null) {
+                DialogUtil.mostrarErro("Validação", "Selecione uma notificação para atualizar!");
+                return;
+            }
+
+            if (txtUsuarioId.getText().isEmpty() || txtMensagem.getText().isEmpty()) {
+                DialogUtil.mostrarErro("Validação", "Preencha todos os campos obrigatórios!");
+                return;
+            }
+
+            controller.atualizar(
+                    notificacaoSelecionada.getId(),
+                    txtUsuarioId.getText(),
+                    txtMensagem.getText(),
+                    cbLida.isSelected()
+            );
+
+            DialogUtil.mostrarInfo("Sucesso", "Notificação atualizada com sucesso!");
             limpar();
             atualizarTabela();
         } catch (Exception e) {

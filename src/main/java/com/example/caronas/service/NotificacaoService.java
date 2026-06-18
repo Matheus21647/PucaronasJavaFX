@@ -61,6 +61,18 @@ public class NotificacaoService {
         return notificacao.get();
     }
 
+    public Notificacao atualizar(String id, String usuarioId, String mensagem, boolean lida) throws IOException {
+        Optional<Notificacao> notificacao = repository.buscarPorId(id);
+        if (notificacao.isEmpty()) {
+            throw new IllegalArgumentException("Notificação não encontrada");
+        }
+        notificacao.get().setUsuarioId(usuarioId);
+        notificacao.get().setMensagem(mensagem);
+        notificacao.get().setLida(lida);
+        repository.atualizar(notificacao.get());
+        return notificacao.get();
+    }
+
     public void excluir(String id) throws IOException {
         Optional<Notificacao> notificacao = repository.buscarPorId(id);
         if (notificacao.isEmpty()) {

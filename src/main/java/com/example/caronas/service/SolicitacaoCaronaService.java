@@ -61,6 +61,18 @@ public class SolicitacaoCaronaService {
         return solicitacao.get();
     }
 
+    public SolicitacaoCarona atualizar(String id, String passageiroId, String caronaId, String status) throws IOException {
+        Optional<SolicitacaoCarona> solicitacao = repository.buscarPorId(id);
+        if (solicitacao.isEmpty()) {
+            throw new IllegalArgumentException("Solicitação não encontrada");
+        }
+        solicitacao.get().setPassageiroId(passageiroId);
+        solicitacao.get().setCaronaId(caronaId);
+        solicitacao.get().setStatus(status);
+        repository.atualizar(solicitacao.get());
+        return solicitacao.get();
+    }
+
     public SolicitacaoCarona recusar(String id) throws IOException {
         Optional<SolicitacaoCarona> solicitacao = repository.buscarPorId(id);
         if (solicitacao.isEmpty()) {
